@@ -17,14 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
 
-Route::get('/post/create', [
-    'uses' => 'PostController@create', 
-    'as' =>'post.create'
-]);
+    Route::get('/post/create', 'PostController@create')->name('post.create');
+    Route::post('/post/store', 'PostController@store')->name('post.store');
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/post/store', [
-    'uses' => 'PostController@store', 
-    'as' =>'post.store'
-]);
+});
