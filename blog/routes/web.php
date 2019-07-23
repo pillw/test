@@ -22,5 +22,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
     Route::get('/post/create', 'PostController@create')->name('post.create');
     Route::post('/post/store', 'PostController@store')->name('post.store');
     Route::get('/home', 'HomeController@index')->name('home');
-
+    Route::get('/category/create', 'CategoriesController@create')->name('category.create');
+    Route::post('/category/store', 'CategoriesController@store')->name('category.store');
+    Route::get('/categories', 'CategoriesController@index')->name('categories');
 });
